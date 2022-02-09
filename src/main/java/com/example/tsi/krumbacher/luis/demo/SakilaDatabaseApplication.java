@@ -3,6 +3,7 @@ package com.example.tsi.krumbacher.luis.demo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @SpringBootApplication
@@ -22,6 +23,8 @@ public class SakilaDatabaseApplication {
 	@Autowired
 	private CategoryRepository categoryRepository;
 
+	private String save = "save";
+
 	public SakilaDatabaseApplication(LanguageRepository languageRepository,
 									 FilmRepository filmRepository, PaymentRepository paymentRepository, CategoryRepository categoryRepository){
 
@@ -35,6 +38,15 @@ public class SakilaDatabaseApplication {
 
 		SpringApplication.run(SakilaDatabaseApplication.class, args);}
 
+		@PostMapping("/PostLanguages")
+		public @ResponseBody String addLanguage(@RequestParam String name){
+			Language addLanguage = new Language(name);
+			languageRepository.save(addLanguage);
+			return save;
+		}
+		/* Language createLanguage(@Validated @RequestBody Language newLanguage) {
+		return languageRepository.save(newLanguage);
+	}*/
 		@GetMapping("/AllLanguages")
 		public @ResponseBody
 		Iterable <Language> getAllLanguages (){
