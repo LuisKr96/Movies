@@ -38,8 +38,9 @@ public class SakilaDatabaseApplication {
 
 		SpringApplication.run(SakilaDatabaseApplication.class, args);}
 
-		@PostMapping("/PostLanguages")
-		public @ResponseBody String addLanguage(@RequestParam String name){
+		@PostMapping("/AddLanguage")
+		public @ResponseBody
+		String addLanguage(@RequestParam String name){
 			Language addLanguage = new Language(name);
 			languageRepository.save(addLanguage);
 			return save;
