@@ -23,6 +23,9 @@ public class SakilaDatabaseApplication {
 	@Autowired
 	private CategoryRepository categoryRepository;
 
+	@Autowired
+	private ActorRepository actorRepository;
+
 	private String save = "save";
 
 	public SakilaDatabaseApplication(LanguageRepository languageRepository,
@@ -56,7 +59,7 @@ public class SakilaDatabaseApplication {
 
 		@GetMapping("/AllFilm")
 		public @ResponseBody
-		Iterable <Film> getAllFilmTitles (){
+		Iterable <Film> getAllFilm (){
 		return filmRepository.findAll();
 		}
 
@@ -68,10 +71,15 @@ public class SakilaDatabaseApplication {
 
 		@GetMapping("/AllCategories")
 		public @ResponseBody
-		Iterable <Category> getAllCategories (){
-		return categoryRepository.findAll();
-	}
-	}
+		Iterable <Category> getAllCategories () {
+			return categoryRepository.findAll();
+		}
+		@GetMapping("/AllActors")
+		public @ResponseBody
+		Iterable <Actor> getAllActor () {
+			return actorRepository.findAll();
+		}
+}
 
 
 
