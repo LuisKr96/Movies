@@ -10,7 +10,6 @@ import javax.persistence.Id;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
-
     private int category_id;
     private String name;
 

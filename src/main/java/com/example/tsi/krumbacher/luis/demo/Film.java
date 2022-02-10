@@ -8,7 +8,7 @@ import javax.persistence.Id;
 @Entity
 public class Film {
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int film_id;
 
     private String title;
@@ -21,8 +21,8 @@ public class Film {
     private String rating;
 
 
-    public Film(String title, String description,int release_year,int rental_duration,
-                double rental_rate,int length,double replacement_cost,String rating){
+    public Film(String title, String description, int release_year, int rental_duration,
+                double rental_rate, int length, double replacement_cost, String rating){
         this.title=title;
         this.description=description;
         this.release_year=release_year;
@@ -42,6 +42,7 @@ public class Film {
     public void setTitle(String title){
         this.title = title;
     }
+
     public String getDescription() {
         return description;
     }

@@ -26,15 +26,23 @@ public class SakilaDatabaseApplication {
 	@Autowired
 	private ActorRepository actorRepository;
 
+	@Autowired
+	private CustomerRepository customerRepository;
+
 	private String save = "save";
 
 	public SakilaDatabaseApplication(LanguageRepository languageRepository,
-									 FilmRepository filmRepository, PaymentRepository paymentRepository, CategoryRepository categoryRepository){
+									 FilmRepository filmRepository, PaymentRepository paymentRepository,
+									 CategoryRepository categoryRepository, ActorRepository actorRepository,
+									 CustomerRepository customerRepository){
 
 		this.languageRepository = languageRepository;
 		this.filmRepository = filmRepository;
 		this.paymentRepository = paymentRepository;
 		this.categoryRepository = categoryRepository;
+		this.actorRepository = actorRepository;
+		this.customerRepository = customerRepository;
+
 	}
 
 
@@ -43,27 +51,38 @@ public class SakilaDatabaseApplication {
 
 		SpringApplication.run(SakilaDatabaseApplication.class, args);}
 
-		@PostMapping("/AddLanguage")
-		public @ResponseBody
-		String addLanguage(@RequestParam String name){
-			Language addLanguage = new Language(name);
-			languageRepository.save(addLanguage);
-			return save;
-		}
-		/* Language createLanguage(@Validated @RequestBody Language newLanguage) {
-		return languageRepository.save(newLanguage);
-	}*/
+
 		@GetMapping("/AllLanguages")
 		public @ResponseBody
 		Iterable <Language> getAllLanguages (){
 			return languageRepository.findAll();
 		}
 
+		@PostMapping("/AddLanguage")
+		public @ResponseBody
+		String addLanguage(@RequestParam String name){
+		Language addLanguage = new Language(name);
+		languageRepository.save(addLanguage);
+		return save;
+	}
+
 		@GetMapping("/AllFilm")
 		public @ResponseBody
-		Iterable <Film> getAllFilm (){
+		Iterable <Film> getAllFilm(){
 		return filmRepository.findAll();
 		}
+
+
+		@PostMapping("/AddFilm")
+		public @ResponseBody
+		String addFilm(@RequestParam String title, String description, int release_year, int rental_duration,
+				   double rental_rate, int length, double replacement_cost, String rating){
+		Film addFilm = new Film(title, description, release_year,
+				rental_duration, rental_rate, length, replacement_cost, rating);
+		filmRepository.save(addFilm);
+		return save;
+	}
+
 
 		@GetMapping("/AllPayment")
 		public @ResponseBody
@@ -71,16 +90,33 @@ public class SakilaDatabaseApplication {
 		return paymentRepository.findAll();
 		}
 
+
+
 		@GetMapping("/AllCategories")
 		public @ResponseBody
 		Iterable <Category> getAllCategories () {
 			return categoryRepository.findAll();
 		}
+
 		@GetMapping("/AllActors")
 		public @ResponseBody
 		Iterable <Actor> getAllActor () {
 			return actorRepository.findAll();
 		}
+
+
+
+		@GetMapping("/AllCustomers")
+		public @ResponseBody
+		Iterable <Customer> getAllCustomers(){return customerRepository.findAll();}
+
+		@PostMapping("/AddCustomer")
+		public @ResponseBody
+		String addCustomer(@RequestParam String first_name, String last_name, String email){
+		Customer addCustomer = new Customer(first_name, last_name, email);
+		customerRepository.save(addCustomer);
+		return save;
+	}
 }
 
 
