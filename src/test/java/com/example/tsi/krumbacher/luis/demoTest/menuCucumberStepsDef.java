@@ -4,7 +4,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-/* public class menuCucumberStepsDef {
+public class menuCucumberStepsDef {
 
     @Given("That I am on the movie database")
     public void that_i_am_on_the_movie_database() {
@@ -22,4 +22,4 @@ import io.cucumber.java.en.When;
         throw new io.cucumber.java.PendingException();
     }
 
-} */
+}

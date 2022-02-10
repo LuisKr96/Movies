@@ -19,9 +19,9 @@ public class Actor implements Serializable {
     private String first_name;
     private String last_name;
 
-    @ManyToMany(mappedBy = "actor", fetch = FetchType.LAZY)
-    @JsonIgnore
-    private Set<Film> films = new HashSet<>();
+//    @ManyToMany(mappedBy = "actor", fetch = FetchType.LAZY)
+//    @JsonIgnore
+//    private Set<Film> films = new HashSet<>();
 
     public Actor(String first_name, String last_name){
         this.first_name = first_name;
@@ -45,11 +45,11 @@ public class Actor implements Serializable {
         this.last_name = last_name;
     }
 
-    public Set<Film> getFilms() {
-        return films;
-    }
-
-    public void setFilms(Set<Film> films) {
-        this.films = films;
-    }
+//    public Set<Film> getFilms() {
+//        return films;
+//    }
+//
+//    public void setFilms(Set<Film> films) {
+//        this.films = films;
+//    }
 }

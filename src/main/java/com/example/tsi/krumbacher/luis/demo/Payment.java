@@ -44,9 +44,12 @@ public class Payment {
     public void setRental_id(int rental_id){
         this.rental_id = rental_id;
     }
+
     public double getAmount(){return amount;}
 
     public void setAmount(double amount){
         this.amount = amount;
     }
+
+
 }
