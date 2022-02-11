@@ -6,6 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @SpringBootApplication
 @RestController
 @RequestMapping("/home")
@@ -47,7 +49,7 @@ public class SakilaDatabaseApplication {
 
 		SpringApplication.run(SakilaDatabaseApplication.class, args);}
 
-
+		//Languages
 		@GetMapping("/AllLanguages")
 		public @ResponseBody
 		Iterable <Language> getAllLanguages (){
@@ -61,7 +63,13 @@ public class SakilaDatabaseApplication {
 		languageRepository.save(addLanguage);
 		return save;
 	}
+		@DeleteMapping("/removelanguage/{language_id}")
+		public @ResponseBody String deleteLanguageByID(@PathVariable int language_id){
+		languageRepository.deleteById(language_id);
+		return "The ID language "+language_id +" has been deleted";
+	}
 
+		//Films
 		@GetMapping("/AllFilm")
 		public @ResponseBody
 		Iterable <Film> getAllFilm(){
@@ -79,13 +87,15 @@ public class SakilaDatabaseApplication {
 	}
 
 
-
+		//Category
 		@GetMapping("/AllCategories")
 		public @ResponseBody
 		Iterable <Category> getAllCategories () {
 			return categoryRepository.findAll();
 		}
 
+
+		//Actor
 		@GetMapping("/AllActors")
 		public @ResponseBody
 		Iterable <Actor> getAllActor () {
@@ -93,7 +103,7 @@ public class SakilaDatabaseApplication {
 		}
 
 
-
+		//Customer
 		@GetMapping("/AllCustomers")
 		public @ResponseBody
 		Iterable <Customer> getAllCustomers(){return customerRepository.findAll();}

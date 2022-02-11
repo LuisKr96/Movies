@@ -73,6 +73,6 @@ public class MockitoTest {
         ArgumentCaptor<Film> filmArgumentCaptor = ArgumentCaptor.forClass(Film.class);
         verify(filmRepository).save(filmArgumentCaptor.capture());
         filmArgumentCaptor.getValue();
-        Assertions.assertEquals(expected,actual,"Film data has not been entered into the mock database");
+        Assertions.assertEquals(expected, actual,"Film data has not been entered into the mock database");
     }
 }
