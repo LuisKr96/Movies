@@ -18,9 +18,6 @@ public class SakilaDatabaseApplication {
 	private FilmRepository filmRepository;
 
 	@Autowired
-	private PaymentRepository paymentRepository;
-
-	@Autowired
 	private CategoryRepository categoryRepository;
 
 	@Autowired
@@ -32,13 +29,12 @@ public class SakilaDatabaseApplication {
 	private String save = "save";
 
 	public SakilaDatabaseApplication(LanguageRepository languageRepository,
-									 FilmRepository filmRepository, PaymentRepository paymentRepository,
+									 FilmRepository filmRepository,
 									 CategoryRepository categoryRepository, ActorRepository actorRepository,
 									 CustomerRepository customerRepository){
 
 		this.languageRepository = languageRepository;
 		this.filmRepository = filmRepository;
-		this.paymentRepository = paymentRepository;
 		this.categoryRepository = categoryRepository;
 		this.actorRepository = actorRepository;
 		this.customerRepository = customerRepository;
@@ -75,20 +71,12 @@ public class SakilaDatabaseApplication {
 
 		@PostMapping("/AddFilm")
 		public @ResponseBody
-		String addFilm(@RequestParam String title, String description, int release_year, int rental_duration,
-				   double rental_rate, int length, double replacement_cost, String rating){
+		String addFilm(@RequestParam String title, String description, int release_year, int rental_duration, double rental_rate, int length, double replacement_cost, String rating){
 		Film addFilm = new Film(title, description, release_year,
 				rental_duration, rental_rate, length, replacement_cost, rating);
 		filmRepository.save(addFilm);
 		return save;
 	}
-
-
-		@GetMapping("/AllPayment")
-		public @ResponseBody
-		Iterable <Payment> getAllPayments (){
-		return paymentRepository.findAll();
-		}
 
 
 

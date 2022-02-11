@@ -23,9 +23,6 @@ public class MockitoTest {
     private FilmRepository filmRepository;
 
     @Mock
-    private PaymentRepository paymentRepository;
-
-    @Mock
     private CategoryRepository categoryRepository;
 
     @Mock
@@ -39,7 +36,7 @@ public class MockitoTest {
     @BeforeEach // create an instance of our database without data
     void Setup(){
         sakilaDatabaseApplication = new SakilaDatabaseApplication(languageRepository,
-                filmRepository, paymentRepository, categoryRepository, actorRepository, customerRepository);
+                filmRepository, categoryRepository, actorRepository, customerRepository);
     }
 
     @Test
@@ -64,9 +61,10 @@ public class MockitoTest {
         Assertions.assertEquals(expected, actual, "Data not added to mock database");
     }
 
+
     @Test
     public void testAddFilm(){
-        Film saveFilm = new Film("Batman: The Dark Knight", "Batman tries to kill the Joker", 2008, '3', 4.99, 10, 12.99,
+        Film saveFilm = new Film("Batman: The Dark Knight", "Batman tries to kill the Joker", 2008, '3', 5.99, 10, 15.99,
                 "PG");
         String expected = "save";
         String actual = sakilaDatabaseApplication.addFilm(saveFilm.getTitle(),saveFilm.getDescription(), saveFilm.getRelease_year(),

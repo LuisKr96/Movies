@@ -1,9 +1,6 @@
 package com.example.tsi.krumbacher.luis.demo;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Film {
@@ -21,8 +18,7 @@ public class Film {
     private String rating;
 
 
-    public Film(String title, String description, int release_year, int rental_duration,
-                double rental_rate, int length, double replacement_cost, String rating){
+    public Film(String title, String description, int release_year, int rental_duration, double rental_rate, int length, double replacement_cost, String rating){
         this.title=title;
         this.description=description;
         this.release_year=release_year;
@@ -32,6 +28,7 @@ public class Film {
         this.replacement_cost=replacement_cost;
         this.rating=rating;
     }
+
 
     public Film(){}
 
@@ -98,6 +95,4 @@ public class Film {
     public void setRating(String rating) {
         this.rating = rating;
     }
-
-
 }
