@@ -1,4 +1,3 @@
 Manifest-Version: 1.0
-Main-Class: com.example.tsi.krumbacher.luis.demo.SakilaDatabaseApplicati
- on
+Main-Class: com.example.tsi.krumbacher.luis.demo.SakilaDatabaseApplication
 

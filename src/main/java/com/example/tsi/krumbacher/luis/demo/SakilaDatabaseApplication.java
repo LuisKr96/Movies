@@ -2,16 +2,26 @@ package com.example.tsi.krumbacher.luis.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.services.dynamodb.model.ResourceNotFoundException;
 
+import java.security.InvalidParameterException;
+import java.util.Base64;
 import java.util.Optional;
 
+
+
+//@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
 @SpringBootApplication
 @RestController
 @RequestMapping("/home")
 public class SakilaDatabaseApplication {
+
 
 	@Autowired
 	private LanguageRepository languageRepository;
