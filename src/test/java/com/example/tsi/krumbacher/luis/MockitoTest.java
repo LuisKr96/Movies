@@ -65,7 +65,7 @@ public class MockitoTest {
         languageList.add(lang1);
         languageList.add(lang2);
         when(sakilaDatabaseApplication.getAllLanguages()).thenReturn(languageList);
-        Assertions.assertEquals(languageList, sakilaDatabaseApplication.getAllLanguages(), "Languages data was not retreived from Language database table.");
+        Assertions.assertEquals(languageList, sakilaDatabaseApplication.getAllLanguages(), "Languages data not in database.");
     }
 
     @Test
@@ -87,7 +87,7 @@ public class MockitoTest {
         customerList.add(customer1);
         customerList.add(customer2);
         when(sakilaDatabaseApplication.getAllCustomers()).thenReturn(customerList);
-        Assertions.assertEquals(customerList, sakilaDatabaseApplication.getAllLanguages(), "Languages data was not retreived from Language database table.");
+        Assertions.assertEquals(customerList, sakilaDatabaseApplication.getAllCustomers(), "Languages data was not retreived from Language database table.");
     }
 
 
