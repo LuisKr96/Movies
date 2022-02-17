@@ -8,11 +8,11 @@ import static org.junit.Assert.assertEquals;
 
 public class LanguageTest {
 
-    private Language language = new Language("German");
+    private Language language = new Language("Spanish");
 
     @Test
     public void test_getName(){
-        assertEquals("test failed", language.getName(), "German");
+        assertEquals("test failed", language.getName(), "Spanish");
     }
 
     @Test
