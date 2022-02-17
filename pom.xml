@@ -12,6 +12,15 @@
 	<artifactId>demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>sakilaDatabase</name>
+	<description>Demo project for Spring Boot</description>
+	<properties>
+		<java.version>17</java.version>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
+		<sonar.organization>luiskr96</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<start-class> com.example.tsi.krumbacher.luis.demo.SakilaDatabaseApplication </start-class>
+	</properties>
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -23,42 +32,11 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-	<description>Demo project for Spring Boot</description>
-	<properties>
-		<java.version>17</java.version>
-		<maven.compiler.source>17</maven.compiler.source>
-		<maven.compiler.target>17</maven.compiler.target>
-		<sonar.organization>luiskr96</sonar.organization>
-		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
-		<start-class> com.example.tsi.krumbacher.luis.demo.SakilaDatabaseApplication </start-class>
-	</properties>
 	<dependencies>
-		<dependency>
-			<groupId>software.amazon.awssdk</groupId>
-			<artifactId>ec2</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>software.amazon.awssdk</groupId>
-			<artifactId>s3</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>software.amazon.awssdk</groupId>
-			<artifactId>dynamodb</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.amazonaws</groupId>
-			<artifactId>aws-java-sdk-secretsmanager</artifactId>
-			<version>1.11.549</version>
-		</dependency>
-		<dependency>
-			<groupId>com.amazonaws.secretsmanager</groupId>
-			<artifactId>aws-secretsmanager-jdbc</artifactId>
-			<version>1.0.5</version>
 		</dependency>
 		<dependency>
 			<groupId>io.cucumber</groupId>
@@ -122,11 +100,45 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.velocity</groupId>
-			<artifactId>velocity</artifactId>
-			<version>1.5</version>
+			<groupId>software.amazon.awssdk</groupId>
+			<artifactId>ec2</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>software.amazon.awssdk</groupId>
+			<artifactId>s3</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>software.amazon.awssdk</groupId>
+			<artifactId>dynamodb</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>software.amazon.awssdk</groupId>
+			<artifactId>ec2</artifactId>
+			<version>2.17.130</version>
+		</dependency>
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk-secretsmanager</artifactId>
+			<version>1.12.159</version>
+		</dependency>
+		<dependency>
+			<groupId>com.amazonaws.secretsmanager</groupId>
+			<artifactId>aws-secretsmanager-jdbc</artifactId>
+			<version>1.0.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-server</artifactId>
+			<version>3.141.59</version>
+			<scope>compile</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager --><dependency>
+		<groupId>io.github.bonigarcia</groupId>
+		<artifactId>webdrivermanager</artifactId>
+		<version>5.0.3</version>
+	</dependency>
 	</dependencies>
+
 	<build>
 		<finalName>maven-unit-test</finalName>
 		<plugins>
