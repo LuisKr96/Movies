@@ -10,6 +10,12 @@ public class FilmTest {
 
     private Film filmTest = new Film("Batman: The Dark Knight", "Batman tries to kill the Joker", 2008, 3, 5.99, 100, 15.99,
             "PG");
+    private Film film = new Film();
+
+    @Test
+    public void test_getFilmId(){
+        assertEquals(0, film.getFilm_id());
+    }
 
     @Test
     public void test_getFilm(){

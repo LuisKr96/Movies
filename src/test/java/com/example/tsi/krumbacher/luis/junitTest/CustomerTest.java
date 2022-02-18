@@ -10,9 +10,13 @@ public class CustomerTest {
 
     private Customer customer = new Customer("John", "Smith", "JohnSmith@gmail.com");
 
+    private Customer anotherCustomer = new Customer();
+    private int customerId;
+
+
     @Test
     void getCustomer_id() {
-
+        assertEquals(0, anotherCustomer.getCustomer_id());
     }
 
     @Test

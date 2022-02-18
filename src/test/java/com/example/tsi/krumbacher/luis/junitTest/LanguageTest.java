@@ -9,6 +9,12 @@ import static org.junit.Assert.assertEquals;
 public class LanguageTest {
 
     private Language language = new Language("Italian");
+    private Language newLanguage = new Language();
+
+    @Test
+    public void test_getLanguageId(){
+        assertEquals(0, newLanguage.getLanguage_id());
+    }
 
     @Test
     public void test_getName(){

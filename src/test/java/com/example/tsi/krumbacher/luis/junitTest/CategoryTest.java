@@ -9,6 +9,13 @@ class CategoryTest {
 
     private Category category = new Category("New category");
 
+    private Category newCat = new Category();
+
+    @Test
+    public void getCategoryId(){
+        assertEquals(0, newCat.getCategory_id());
+    }
+
     @Test
     public void getName() {
         assertEquals("New category",category.getName(), "test failed");

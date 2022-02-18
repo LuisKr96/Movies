@@ -29,6 +29,10 @@ public class Actor implements Serializable {
     }
     public Actor(){}
 
+    public int getActor_id() {
+        return actor_id;
+    }
+
     public String getFirst_name() {
         return first_name;
     }
