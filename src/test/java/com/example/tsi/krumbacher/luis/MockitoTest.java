@@ -112,8 +112,32 @@ public class MockitoTest {
         List<Film> filmList = new ArrayList<>();
         filmList.add(film1);
         when(sakilaDatabaseApplication.getAllFilm()).thenReturn(filmList);
-        Assertions.assertEquals(filmList, sakilaDatabaseApplication.getAllFilm(), "Languages data was not retreived from Language database table.");
+        Assertions.assertEquals(filmList, sakilaDatabaseApplication.getAllFilm(), "Languages data was not retrieved from Language database table.");
     }
+
+    @Test
+    public void testGetCategory(){
+        Category newCategory = new Category("new Category");
+        Category newCategory2 = new Category("another Category");
+        List<Category> categoryList = new ArrayList<>();
+        categoryList.add(newCategory);
+        categoryList.add(newCategory2);
+        when(sakilaDatabaseApplication.getAllCategories()).thenReturn(categoryList);
+        Assertions.assertEquals(categoryList, sakilaDatabaseApplication.getAllCategories(), "Category not available.");
+    }
+
+    @Test
+    public void testGetActor(){
+        Actor newActor = new Actor("New", "Actor");
+        Actor newActor2 = new Actor("Another", "Actress");
+        List<Actor> actorList = new ArrayList<>();
+        actorList.add(newActor);
+        actorList.add(newActor2);
+        when(sakilaDatabaseApplication.getAllActor()).thenReturn(actorList);
+        Assertions.assertEquals(actorList, sakilaDatabaseApplication.getAllActor(), "Actor not in database.");
+    }
+
+
 
 
 }
