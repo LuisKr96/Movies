@@ -27,7 +27,6 @@ public class MockitoTest {
     @Mock
     private LanguageRepository languageRepository;//create fake version of language repository to run mock tests
 
-
     @Mock
     private FilmRepository filmRepository;
 
@@ -136,8 +135,4 @@ public class MockitoTest {
         when(sakilaDatabaseApplication.getAllActor()).thenReturn(actorList);
         Assertions.assertEquals(actorList, sakilaDatabaseApplication.getAllActor(), "Actor not in database.");
     }
-
-
-
-
 }
