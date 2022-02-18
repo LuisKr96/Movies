@@ -19,23 +19,23 @@ class ActorTest {
 
     @Test
     void getFirst_name() {
-        assertEquals("Liam", actor.getFirst_name(), "test failed");
+        assertEquals("test failed", actor.getFirst_name(), "Liam");
     }
 
     @Test
     void setFirst_name() {
         actor.setFirst_name("Denzel");
-        assertEquals("Denzel", actor.getFirst_name(), "test failed");
+        assertEquals("test failed", actor.getFirst_name(), "Denzel");
     }
 
     @Test
     void getLast_name() {
-        assertEquals("Neeson", actor.getLast_name(), "test failed");
+        assertEquals("test failed", actor.getLast_name(), "Neeson");
     }
 
     @Test
     void setLast_name() {
         actor.setLast_name("Washington");
-        assertEquals("Washington", actor.getLast_name(), "test failed");
+        assertEquals("test failed", actor.getLast_name(), "Washington");
     }
 }
