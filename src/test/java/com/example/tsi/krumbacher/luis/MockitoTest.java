@@ -39,10 +39,16 @@ public class MockitoTest {
     @Mock
     private CustomerRepository customerRepository;
 
+    @Mock
+    private Film_ActorRepository film_actorRepository;
+
+    @Mock
+    private ReviewRepository reviewRepository;
+
     @BeforeEach // create an instance of our database without data
     void Setup(){
         sakilaDatabaseApplication = new SakilaDatabaseApplication(languageRepository,
-                filmRepository, categoryRepository, actorRepository, customerRepository);
+                filmRepository, categoryRepository, actorRepository, customerRepository, film_actorRepository, reviewRepository);
     }
 
     @Test

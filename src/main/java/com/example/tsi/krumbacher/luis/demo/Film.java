@@ -1,6 +1,9 @@
 package com.example.tsi.krumbacher.luis.demo;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Film {
@@ -18,6 +21,7 @@ public class Film {
     private String rating;
 
 
+
     public Film(String title, String description, int release_year, int rental_duration, double rental_rate, int length, double replacement_cost, String rating){
         this.title=title;
         this.description=description;
@@ -27,6 +31,50 @@ public class Film {
         this.length=length;
         this.replacement_cost=replacement_cost;
         this.rating=rating;
+
+    }
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinTable(name = "film_actor",
+            joinColumns = {
+                    @JoinColumn(name = "film_id", referencedColumnName = "film_id",
+                            nullable = false, updatable = false)},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "actor_id", referencedColumnName = "actor_id",
+                            nullable = false, updatable = false)})
+
+    private Set<Actor> actor = new HashSet<>();
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinTable(name = "film_category",
+            joinColumns = {
+                    @JoinColumn(name = "film_id", referencedColumnName = "film_id",
+                            nullable = false, updatable = false)},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "category_id", referencedColumnName = "category_id",
+                            nullable = false, updatable = false)})
+    private Set<Category> category = new HashSet<>();
+
+
+
+
+    @OneToMany(mappedBy = "film", cascade = CascadeType.ALL)
+    private List<Review> reviews;
+
+    public Set<Actor> getActors() {
+        return actor;
+    }
+
+    public void setActors(Set<Actor> actor) {
+        this.actor = actor;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
 
 
