@@ -18,18 +18,18 @@ public class Review {
     @JoinColumn(name = "film_id", referencedColumnName = "film_id", updatable = false, insertable = false)
     private Film film;
 
+    public Review(){
 
+    }
 
-    public Review(int film_id,String consumer_review){
-
+    public Review(int review_id, int film_id, String consumer_review){
+        this.review_id=review_id;
         this.film_id=film_id;
         this.consumer_review=consumer_review;
 
     }
 
-    public Review(){
 
-    }
 
     public int getFilm_id() {
         return film_id;

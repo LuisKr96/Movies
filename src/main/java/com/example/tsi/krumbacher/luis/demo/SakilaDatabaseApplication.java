@@ -1,5 +1,6 @@
 package com.example.tsi.krumbacher.luis.demo;
 
+import com.amazonaws.services.secretsmanager.model.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -8,7 +9,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import software.amazon.awssdk.regions.Region;
-import software.amazon.awssdk.services.dynamodb.model.ResourceNotFoundException;
+
 
 import java.security.InvalidParameterException;
 import java.util.Base64;
@@ -141,13 +142,13 @@ public class SakilaDatabaseApplication {
 
 
     //Customer
-    @GetMapping("/AllCustomers")
+    @GetMapping("/Customers")
     public @ResponseBody
     Iterable<Customer> getAllCustomers() {
         return customerRepository.findAll();
     }
 
-    @PostMapping("/AddCustomer")
+    @PostMapping("/Customers/Add")
     public @ResponseBody
     String addCustomer(@RequestParam String first_name, String last_name, String email) {
         Customer addCustomer = new Customer(first_name, last_name, email);
@@ -158,12 +159,29 @@ public class SakilaDatabaseApplication {
 
     }
 
+
     @PostMapping("/Review/Add")
     public @ResponseBody
-    String addReview(@RequestParam int film_id, String consumer_review) {
-        Review addReview = new Review(film_id, consumer_review);
+    String addReview(@RequestParam int review_id, int film_id, String consumer_review) {
+        Review addReview = new Review(review_id, film_id, consumer_review);
         reviewRepository.save(addReview);
         return save;
+    }
+    @PutMapping("/Review/Update/{review_id}")
+    public @ResponseBody
+    String updateReview(@PathVariable int review_id, @RequestParam String consumer_review){
+        Review updateReview = reviewRepository.findById(review_id).orElseThrow(() ->new ResourceNotFoundException("Review not found"));;
+
+        updateReview.setConsumer_review(consumer_review);
+        final Review updatedReview = reviewRepository.save(updateReview);
+        return "updated";
+    }
+
+    @DeleteMapping("/Review/Delete/{review_id}")
+    public @ResponseBody
+    String deleteReviewByID(@PathVariable int review_id) {
+        reviewRepository.deleteById(review_id);
+        return "deleted";
     }
 }
 
