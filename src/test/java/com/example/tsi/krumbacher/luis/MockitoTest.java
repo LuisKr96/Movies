@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.mockito.Mockito.*;
 
@@ -119,6 +120,15 @@ public class MockitoTest {
     }
 
     @Test
+    public void testGetFilmById(){
+        Film testFilmbyID = new Film("Star Wars", "Jedis killing ppl with lightsaber", 2008, 3, 43.43,140,12.43, "PG");
+        when(sakilaDatabaseApplication.getFilmByID(0)).thenReturn(Optional.of(testFilmbyID));
+        Assertions.assertEquals(Optional.of(testFilmbyID), sakilaDatabaseApplication.getFilmByID(0), "This Film Id getting test has failed");
+    }
+
+
+
+    @Test
     public void testGetCategory(){
         Category newCategory = new Category("new Category");
         Category newCategory2 = new Category("another Category");
@@ -172,4 +182,6 @@ public class MockitoTest {
 
         Assertions.assertEquals(expected, actual);
     }
+
+
 }
