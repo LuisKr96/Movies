@@ -22,8 +22,7 @@ public class Review {
 
     }
 
-    public Review(int review_id, int film_id, String consumer_review){
-        this.review_id=review_id;
+    public Review(int film_id, String consumer_review){
         this.film_id=film_id;
         this.consumer_review=consumer_review;
 

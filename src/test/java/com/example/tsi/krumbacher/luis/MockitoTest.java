@@ -14,9 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
+import static org.mockito.Mockito.*;
 
 
 @ExtendWith(MockitoExtension.class) //inherit characteristics to use Mockito
@@ -98,12 +96,12 @@ public class MockitoTest {
 
     @Test
     public void testAddFilm(){
-        Film saveFilm = new Film("Batman: The Dark Knight", "Batman tries to kill the Joker", 2008, '3', 5.99, 10, 15.99,
+        Film addedFilm = new Film("Batman: The Dark Knight", "Batman tries to kill the Joker", 2008, '3', 5.99, 10, 15.99,
                 "PG");
         String expected = "save";
-        String actual = sakilaDatabaseApplication.addFilm(saveFilm.getTitle(),saveFilm.getDescription(), saveFilm.getRelease_year(),
-                saveFilm.getRental_duration(), saveFilm.getRental_rate(), saveFilm.getLength(), saveFilm.getReplacement_cost(),
-                saveFilm.getRating());
+        String actual = sakilaDatabaseApplication.addFilm(addedFilm.getTitle(),addedFilm.getDescription(), addedFilm.getRelease_year(),
+                addedFilm.getRental_duration(), addedFilm.getRental_rate(), addedFilm.getLength(), addedFilm.getReplacement_cost(),
+                addedFilm.getRating());
         ArgumentCaptor<Film> filmArgumentCaptor = ArgumentCaptor.forClass(Film.class);
         verify(filmRepository).save(filmArgumentCaptor.capture());
         filmArgumentCaptor.getValue();
@@ -140,5 +138,38 @@ public class MockitoTest {
         actorList.add(newActor2);
         when(sakilaDatabaseApplication.getAllActor()).thenReturn(actorList);
         Assertions.assertEquals(actorList, sakilaDatabaseApplication.getAllActor(), "Actor not in database.");
+    }
+
+    @Test
+    public void testAddReview(){
+        Review testReview = new Review(45,
+                "test review"
+                );
+        String expectedAdd ="save";
+
+        String actual = sakilaDatabaseApplication.addReview(45,testReview.getConsumer_review());
+
+        ArgumentCaptor<Review>reviewArgumentCaptor = ArgumentCaptor.forClass(Review.class);
+        verify(reviewRepository).save(reviewArgumentCaptor.capture());
+        reviewArgumentCaptor.getValue();
+
+        Assertions.assertEquals(expectedAdd,actual,"Actor data hasn't been added to mock DB");
+
+    }
+    @Test
+    public void testDeleteReviewByID(){
+        Review deleteReview = new Review(2,
+                "test review"
+                );
+
+        int id =5;
+        String actual = sakilaDatabaseApplication.deleteReviewByID(id);
+        String expected ="deleted";
+
+        ArgumentCaptor<Integer>reviewArgumentCaptor = ArgumentCaptor.forClass(Integer.class);
+        verify(reviewRepository).deleteById(reviewArgumentCaptor.capture());
+        reviewArgumentCaptor.getValue();
+
+        Assertions.assertEquals(expected, actual);
     }
 }

@@ -21,7 +21,7 @@ import java.util.Optional;
 
 @SpringBootApplication
 @RestController
-@CrossOrigin
+@CrossOrigin(origins="*")
 @RequestMapping("/home")
 public class SakilaDatabaseApplication {
 
@@ -159,18 +159,23 @@ public class SakilaDatabaseApplication {
 
     }
 
+    @GetMapping("/AllReviews")
+    public @ResponseBody
+    Iterable<Review>getAllReviews(){
+        return reviewRepository.findAll();
+    }
 
     @PostMapping("/Review/Add")
     public @ResponseBody
-    String addReview(@RequestParam int review_id, int film_id, String consumer_review) {
-        Review addReview = new Review(review_id, film_id, consumer_review);
+    String addReview(@RequestParam int film_id, String consumer_review) {
+        Review addReview = new Review(film_id, consumer_review);
         reviewRepository.save(addReview);
         return save;
     }
     @PutMapping("/Review/Update/{review_id}")
     public @ResponseBody
     String updateReview(@PathVariable int review_id, @RequestParam String consumer_review){
-        Review updateReview = reviewRepository.findById(review_id).orElseThrow(() ->new ResourceNotFoundException("Review not found"));;
+        Review updateReview = reviewRepository.findById(review_id).orElseThrow(() -> new ResourceNotFoundException("No review available"));;
 
         updateReview.setConsumer_review(consumer_review);
         final Review updatedReview = reviewRepository.save(updateReview);
