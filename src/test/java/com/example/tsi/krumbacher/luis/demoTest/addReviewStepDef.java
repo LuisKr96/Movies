@@ -12,8 +12,6 @@ import org.mockito.Mock;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 public class addReviewStepDef {
@@ -96,27 +94,29 @@ public class addReviewStepDef {
         Assertions.assertEquals(expected, actualReview, "test failed");
     }
 
-    //Get reviews
+    //Get films
 
-    List<Review> reviews = new ArrayList<>();
+    List<Film> films = new ArrayList<>();
 
-    @Given("The films have reviews")
-    public void the_films_have_reviews() {
-        Review review1 = new Review(5,"new review");
-        Review review2 = new Review(34, "another review");
-        Review review3 = new Review(23,"final review");
-        reviews.add(review1);
-        reviews.add(review2);
-        reviews.add(review3);
+    @Given("The website has a list of films")
+    public void the_website_has_a_list_of_films() {
+        setup();
+        Film film1 = new Film("Batman: The Dark Knight", "Batman tries to kill the Joker", 2008, 3, 5.99, 100, 15.99,
+                "PG");
+        Film film2 = new Film("Batman: The Dark Knight", "Batman tries to kill the Joker", 2008, 3, 5.99, 100, 15.99,
+                "PG");
+
+        films.add(film1);
+        films.add(film2);
     }
     @When("I go to the website")
     public void i_go_to_the_website() {
-        when(sakilaDatabaseApplication.getAllReviews()).thenReturn(reviews);
+        when(sakilaDatabaseApplication.getAllFilm()).thenReturn(films);
     }
-    @Then("The the reviews should appear")
-    public void the_the_reviews_should_appear() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+    @Then("The films should appear")
+    public void the_films_should_appear() {
+        Assertions.assertEquals(films, sakilaDatabaseApplication.getAllFilm(), "no films");
     }
 
 }
